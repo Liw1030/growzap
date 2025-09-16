@@ -2,6 +2,7 @@ package com.growza_prueba.growzap.service;
 
 import com.growza_prueba.growzap.model.Productos;
 import com.growza_prueba.growzap.repository.IProductosRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Optional;
 @Service
 public class ProductosService implements IProductosService{
     private IProductosRepository productosRepository;
-
+    @Autowired
     public ProductosService(IProductosRepository productosRepository) {
         this.productosRepository = productosRepository;
     }
@@ -44,8 +45,6 @@ public class ProductosService implements IProductosService{
         }else {
             throw new RuntimeException("El Producto no fue encontrado.");
         }
-
-
     }
 
     @Override
