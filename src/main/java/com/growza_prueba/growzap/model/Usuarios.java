@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Usuarios {
@@ -37,10 +38,9 @@ public class Usuarios {
     private LocalDate fecha_registro;
 
     //* Relaciones
+    @OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+    private List<Productos> productos;
 
-    @OneToOne(mappedBy = "usuarios", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private Carrito carrito;
 
     //* Constructores de Usuarios
     public Usuarios() {

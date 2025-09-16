@@ -28,6 +28,9 @@ public class Pagos {
     @Column(nullable = false)
     private String estado_pago;
 
+    //* Relaciones
+
+
     //* Constructores
     public Pagos() {
     }
