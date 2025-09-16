@@ -25,7 +25,73 @@ public class Productos {
 
     private String imagen_url;
 
+    //* Relaciones
     @ManyToOne
-    @JoinColumn(name = "id_categoria", nullable = false)
-    private Categorias categoria;
+    @JoinColumn(name = "id_productos")
+    private Usuarios usuarios;
+
+    //* Constructores
+    public Productos() {
+    }
+
+    public Productos(Long id_producto, String nombre_producto, String descripcion, int stock, double precio, String imagen_url) {
+        this.id_producto = id_producto;
+        this.nombre_producto = nombre_producto;
+        this.descripcion = descripcion;
+        this.stock = stock;
+        this.precio = precio;
+        this.imagen_url = imagen_url;
+    }
+
+    //* Getter y Setter
+
+    public Long getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(Long id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public String getNombre_producto() {
+        return nombre_producto;
+    }
+
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public String getImagen_url() {
+        return imagen_url;
+    }
+
+    public void setImagen_url(String imagen_url) {
+        this.imagen_url = imagen_url;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+
 }
