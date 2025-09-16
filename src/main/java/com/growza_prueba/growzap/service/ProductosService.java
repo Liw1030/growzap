@@ -40,8 +40,6 @@ public class ProductosService implements IProductosService{
             editarProducto.setDescripcion(producto.getDescripcion());
             editarProducto.setPrecio(producto.getPrecio());
             editarProducto.setStock(producto.getStock());
-            editarProducto.setImagen_url(producto.getImagen_url());
-            editarProducto.setCategoria(producto.getCategoria());
             productosRepository.save(editarProducto);
         }else {
             throw new RuntimeException("El Producto no fue encontrado.");
@@ -52,6 +50,12 @@ public class ProductosService implements IProductosService{
 
     @Override
     public void eliminarProducto(Long id) {
-
+        Optional<Productos> productoExiste = productosRepository.findById(id);
+        if (productoExiste.isPresent()){
+            Productos eliminarProducto = productoExiste.get();
+            productosRepository.delete(eliminarProducto);
+        }else {
+            throw new RuntimeException("El Producto no fue encontrado.");
+        }
     }
 }
