@@ -48,4 +48,15 @@ public class ProductosCotroller {
         productosService.eliminarProducto(id);
         return ResponseEntity.ok("Producto eliminado con éxito");
     }
+
+    //* Asignar una categoria a un producto
+    @PutMapping("/{idProducto}/categoria/{idCategoria}")
+    public ResponseEntity<String> asignarCategoriaAProducto(@PathVariable Long idProducto, @PathVariable Long idCategoria) {
+        try {
+            productosService.asignarCategoriaAProducto(idProducto, idCategoria);
+            return ResponseEntity.ok("Categoría asignada al producto con éxito.");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

@@ -99,5 +99,12 @@ public class Productos {
         this.stock = stock;
     }
 
+    public Categorias getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categorias categoria) {
+        this.categoria = categoria;
+    }
 
 }
