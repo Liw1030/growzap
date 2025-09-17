@@ -28,8 +28,11 @@ public class Pagos {
     @Column(nullable = false)
     private String estado_pago;
 
-    //* Relaciones
-
+    //! Relaciones
+    //* Un pago pertenece a un solo pedido
+    @OneToOne
+    @JoinColumn(name = "id_pedido")
+    private Pedidos pedido;
 
     //* Constructores
     public Pagos() {

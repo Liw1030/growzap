@@ -20,24 +20,21 @@ public class Facturas {
     @Column(nullable = false)
     private double numero_factura;
 
-    @ManyToOne
-    @JoinColumn(name = "id_pedido", nullable = false)
+    //! Relaciones
+    //* Una factura pertenece a un solo pedido
+    @OneToOne
+    @JoinColumn(name = "id_pedido")
     private Pedidos pedido;
-
-    @ManyToOne
-    @JoinColumn(name = "id_pago", nullable = false)
-    private Pagos pago;
 
     //* Constructores
     public Facturas() {
     }
 
-    public Facturas(Long id_factura, LocalDate fecha_emision, double numero_factura, Pedidos pedido, Pagos pago) {
+    public Facturas(Long id_factura, LocalDate fecha_emision, double numero_factura) {
         this.id_factura = id_factura;
         this.fecha_emision = fecha_emision;
         this.numero_factura = numero_factura;
-        this.pedido = pedido;
-        this.pago = pago;
+
     }
 
     //* Getter y Setter
@@ -65,19 +62,4 @@ public class Facturas {
         this.numero_factura = numero_factura;
     }
 
-    public Pedidos getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedidos pedido) {
-        this.pedido = pedido;
-    }
-
-    public Pagos getPago() {
-        return pago;
-    }
-
-    public void setPago(Pagos pago) {
-        this.pago = pago;
-    }
 }

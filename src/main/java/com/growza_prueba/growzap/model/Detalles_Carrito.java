@@ -3,6 +3,8 @@ package com.growza_prueba.growzap.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Detalles_Carrito {
     @Id
@@ -13,23 +15,22 @@ public class Detalles_Carrito {
     @Column(nullable = false)
     private int cantidad;
 
+    //* Ralaciones
     @ManyToOne
-    @JoinColumn(name= "id_carrito", nullable = false)
-    private  Carrito carrito;
+    @JoinColumn(name = "id_carrito")
+    private Carrito carrito;
 
     @ManyToOne
-    @JoinColumn(name = "id_producto", nullable = false)
+    @JoinColumn(name = "id_producto")
     private Productos producto;
 
     //* Constructores
     public Detalles_Carrito() {
     }
 
-    public Detalles_Carrito(Long id_detalle_carrito, int cantidad, Carrito carrito, Productos producto) {
+    public Detalles_Carrito(Long id_detalle_carrito, int cantidad, Productos producto) {
         this.id_detalle_carrito = id_detalle_carrito;
         this.cantidad = cantidad;
-        this.carrito = carrito;
-        this.producto = producto;
     }
 
     //* Getter y Setter
@@ -48,21 +49,5 @@ public class Detalles_Carrito {
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public Carrito getCarrito() {
-        return carrito;
-    }
-
-    public void setCarrito(Carrito carrito) {
-        this.carrito = carrito;
-    }
-
-    public Productos getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Productos producto) {
-        this.producto = producto;
     }
 }

@@ -3,6 +3,8 @@ package com.growza_prueba.growzap.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.List;
+
 @Entity
 public class Productos {
     @Id
@@ -25,10 +27,14 @@ public class Productos {
 
     private String imagen_url;
 
-    //* Relaciones
+    //! Relaciones
+    //* Muchos productos pertenecen a una sola categoría
     @ManyToOne
-    @JoinColumn(name = "id_productos")
-    private Usuarios usuarios;
+    @JoinColumn(name = "id_categoria")
+    private Categorias categoria;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Detalles_Pedidos> detallesPedidos;
 
     //* Constructores
     public Productos() {

@@ -37,10 +37,13 @@ public class Usuarios {
     @Column(nullable = false)
     private LocalDate fecha_registro;
 
-    //* Relaciones
-    @OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
-    private List<Productos> productos;
+    //! Relaciones
+    //* Un usuario tiene un carrito
+    @OneToOne(mappedBy = "usuarios", cascade = CascadeType.ALL)
+    private Carrito carrito;
 
+    @OneToMany(mappedBy = "usuarios", cascade = CascadeType.ALL)
+    private List<Pedidos> pedidos;
 
     //* Constructores de Usuarios
     public Usuarios() {

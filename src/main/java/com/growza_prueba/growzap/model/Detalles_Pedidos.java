@@ -2,7 +2,8 @@ package com.growza_prueba.growzap.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
+
+import java.util.List;
 
 @Entity
 public class Detalles_Pedidos {
@@ -18,24 +19,25 @@ public class Detalles_Pedidos {
     @Column(nullable = false)
     private double precio_unitario;
 
+    //! Relaciones
+    //* Muchos detalles de pedidos pertenecen a un solo pedido
     @ManyToOne
     @JoinColumn(name = "id_pedido", nullable = false)
     private Pedidos pedido;
 
+    //* Muchos detalles de pedidos se refieren a un solo producto
     @ManyToOne
-    @JoinColumn(name = "id_producto", nullable = false)
+    @JoinColumn(name = "id_producto")
     private Productos producto;
 
     //* Constructores
     public Detalles_Pedidos() {
     }
 
-    public Detalles_Pedidos(Long id_detalle_pedido, int cantidad, double precio_unitario, Pedidos pedido, Productos producto) {
+    public Detalles_Pedidos(Long id_detalle_pedido, int cantidad, double precio_unitario) {
         this.id_detalle_pedido = id_detalle_pedido;
         this.cantidad = cantidad;
         this.precio_unitario = precio_unitario;
-        this.pedido = pedido;
-        this.producto = producto;
     }
 
     //*  Getter y Setter
@@ -61,21 +63,5 @@ public class Detalles_Pedidos {
 
     public void setPrecio_unitario(double precio_unitario) {
         this.precio_unitario = precio_unitario;
-    }
-
-    public Pedidos getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedidos pedido) {
-        this.pedido = pedido;
-    }
-
-    public Productos getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Productos producto) {
-        this.producto = producto;
     }
 }

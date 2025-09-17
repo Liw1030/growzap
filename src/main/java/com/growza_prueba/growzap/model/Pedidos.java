@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Pedidos {
@@ -24,9 +25,23 @@ public class Pedidos {
     @Column(nullable = false)
     private String estado;
 
+    //! Relaciones
+    //* Muchos pedidos pertenecen a un solo usuario
     @ManyToOne
-    @JoinColumn(name="id_usuario", nullable = false)
-    private Usuarios usuario;
+    @JoinColumn(name = "id_usuarios")
+    private Usuarios usuarios;
+
+    //* Un pedido tiene un único pago
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Pagos pago;
+
+    //* Un pedido tiene una única factura
+    @OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private Facturas factura;
+
+    //* Un pedido se compone de múltiples líneas de detalle
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<Detalles_Pedidos> detallesPedidos;
 
     //* Constructores
     public Pedidos() {
@@ -37,7 +52,6 @@ public class Pedidos {
         this.fecha_pedido = fecha_pedido;
         this.total = total;
         this.estado = estado;
-        this.usuario = usuario;
     }
 
     //* Getters y Setters
@@ -74,11 +88,4 @@ public class Pedidos {
         this.estado = estado;
     }
 
-    public Usuarios getUsuarios() {
-        return usuario;
-    }
-
-    public void setUsuarios(Usuarios usuario) {
-        this.usuario = usuario;
-    }
 }
