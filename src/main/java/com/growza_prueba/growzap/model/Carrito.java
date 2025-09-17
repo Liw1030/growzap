@@ -39,4 +39,19 @@ public class Carrito {
         this.id_carrito = id_carrito;
     }
 
+    public Usuarios getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuarios usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public List<Detalles_Carrito> getDetallesCarrito() {
+        return detallesCarrito;
+    }
+
+    public void setDetallesCarrito(List<Detalles_Carrito> detallesCarrito) {
+        this.detallesCarrito = detallesCarrito;
+    }
 }
